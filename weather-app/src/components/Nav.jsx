@@ -1,10 +1,12 @@
 import React from 'react'
-import './nav.css'
+import Toggle from './Toggle'
+
 
 const Nav = () => {
   return (
     <div className='navbar'>
-        <h4 className='nav'>Navbar</h4>
+      <Toggle />
+      <h1>Regular</h1>
     </div>
   )
 }
