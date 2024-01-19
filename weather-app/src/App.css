@@ -10,6 +10,10 @@
   font-family: 'Monument';
   src: url('MonumentRegular.otf') format('opentype');
 }
+@font-face {
+  font-family: 'NyghtSerif';
+  src: url('NyghtSerif-Italic.otf') format('opentype');
+}
 
 
 #root {
@@ -25,8 +29,10 @@ body {
   background-color: var(--background);
   color: var(--primary-text-color);
   font-family: 'Nordlig', sans-serif;
-  /* font-family: 'Anomega', sans-serif;
-  font-family: 'Monument', sans-serif; */
+  font-family: 'Anomega', sans-serif;
+  font-family: 'Monument', sans-serif;
+  font-family: 'NyghtSerif', sans-serif;
+  font-size: 20vh;
 
 
 
