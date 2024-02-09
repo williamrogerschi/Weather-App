@@ -1,57 +1,37 @@
 @font-face {
-  font-family: 'Nordlig';
-  src: url('Nordlig.otf') format('opentype');
-}
-@font-face {
-  font-family: 'Anomega';
-  src: url('Anomega.ttf') format('truetype');
-}
-@font-face {
-  font-family: 'Monument';
-  src: url('MonumentRegular.otf') format('opentype');
-}
-@font-face {
-  font-family: 'NyghtSerif';
-  src: url('NyghtSerif-Italic.otf') format('opentype');
+  font-family: 'Power Grotesk';
+  src: url('PowerGroteskTrial-Regular.otf') format('opentype');
 }
 
 
-#root {
-  margin: 0 auto;
+* {
+  margin: 0;
   padding: 0;
-  text-align: center;
 }
 
 html,
 body {
-  margin: 0;
-  padding: 0;
   background-color: var(--background);
+  background-image: url('/hot.jpeg');
+  background-size: cover;
   color: var(--primary-text-color);
-  font-family: 'Nordlig', sans-serif;
-  font-family: 'Anomega', sans-serif;
-  font-family: 'Monument', sans-serif;
-  font-family: 'NyghtSerif', sans-serif;
-  font-size: 20vh;
-
-
-
-  @media screen and (max-width:1200px) {
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    height: auto;
-  }
+  font-family: 'Power Grotesk', sans-serif;
 }
 
 .App {
-  height: 100vh;
-  min-height: 100vh;
-  background-color: var(--background);
-  color: var(--primary-text-color);
-  transition: background-color 0.5s ease-in-out;
+  @media screen and (max-width:1200px) {
+    min-height: 100vh;
+  }
+  @media screen and (max-width:1000px) {
+    min-height: 100vh;
 
-  @media screen and (max-width: 1200px) {
-    height: auto;
+  }
+  @media screen and (max-width:800px) {
+    min-height: 100vh;
+
+  }
+  @media screen and (max-width:600px) {
+    min-height: 100vh;
+
   }
 }

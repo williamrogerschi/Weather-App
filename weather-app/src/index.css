@@ -15,31 +15,6 @@ font-family: 'Schibsted Grotesk', sans-serif; */
 :root {
   --background: #D5C5C8;
   --primary-text-color: #252422;
-  --toggle-bg: #1C2826;
-  --toggle-fg: #E3DE8F;
-  --background-image: url('./dark.png') ;
-  --light-link-color:#252422;
-  --dark-link-color: #86615C; 
-  --light-button-bg: #252422;
-  --light-button-color: #E9D3D0;
-}
-[data-theme='dark'] {
-  --background: #252422;
-  --primary-text-color: #86615C;
-  --toggle-bg: #E3DE8F;
-  --toggle-fg: #1C2826;
-  --dark-button-bg: #86615C; 
-  --dark-button-color: #252422;
-}
-[data-theme='dark'] a {
-  color: var(--dark-link-color);
-}
-a {
-  color: var(--light-link-color);
-}
-[data-theme='dark'] a:hover {
-  color: var(--dark-link-color);
-}
-a {
-  color: var(--light-link-color);
+  --background-image: url('./hot.jpeg');
+  color: #d5e0e0;
 }
