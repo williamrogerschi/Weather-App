@@ -21,6 +21,7 @@
     display: flex;
     justify-content: baseline;
     flex-direction: column;
+    border-bottom: 2px solid black;
 }
 .p-date {
     font-family: 'Power Grotesk', sans-serif;
@@ -32,5 +33,7 @@
     font-size: 12vh;
 }
 .current-condition {
+    font-family: 'Power Grotesk', sans-serif;
     font-size: 2.5vh;
+    padding-bottom: 1rem;
 }

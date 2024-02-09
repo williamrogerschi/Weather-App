@@ -12,12 +12,13 @@ const Home = () => {
 
   const [search, setSearch] = useState('')
   const [weatherData, setWeatherData] = useState(null)
+  const [future, setFuture] = useState(null)
 
   const formatDateString = (dateString) => {
-    const options = { weekday: 'long', month: 'long', day: 'numeric' }
-    const formattedDate = new Date(dateString).toLocaleDateString('en-US', options)
-    return formattedDate
-  }
+    const options = { weekday: 'long', month: 'long', day: 'numeric' };
+    const formattedDate = new Date(dateString.replace(/-/g, '/')).toLocaleDateString('en-US', options);
+    return formattedDate;
+  };
 
   const searchWeather = () => {
     console.log(search)
@@ -26,7 +27,18 @@ const Home = () => {
       .then((result) => {
         setWeatherData(result)
         console.log(result)
+        searchFuture()
         })
+  }
+
+  const searchFuture = () => {
+    console.log(search)
+    fetch(`${api.base}forecast.json?key=${api.key}&q=${search}&days=3`)
+    .then((forecastRes) => forecastRes.json())
+    .then((forecastResult) => {
+      setFuture(forecastResult)
+      console.log(forecastResult)
+      })
   }
 
 
@@ -57,6 +69,17 @@ const Home = () => {
             <p className='current-condition'>{weatherData.current.condition.text}</p>
           </div>
         )}
+{future && future.forecast && future.forecast.forecastday && (
+  <div className='3-day'>
+    {future.forecast.forecastday.slice(1, 3).map((day) => (
+      <div key={day.date_epoch} className='forecast-day'>
+        <p className='forecast-date'>{formatDateString(day.date)}</p>
+        <p className='forecast-temp'>{day.day.maxtemp_f}º / {day.day.mintemp_f}º</p>
+        <p className='forecast-condition'>{day.day.condition.text}</p>
+      </div>
+    ))}
+  </div>
+)}
       </div>
     </>
   )
