@@ -1,0 +1,13 @@
+.search-container {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+}
+.search-header {
+    display: flex;
+    flex-direction: row;
+}
+.header-results {
+    display: flex;
+    flex-direction: column;
+}

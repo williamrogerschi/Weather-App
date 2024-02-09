@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import './header.css'
 
 
 const api = {
@@ -12,32 +13,43 @@ const Header = () => {
   const [search, setSearch] = useState('')
   const [weatherData, setWeatherData] = useState(null)
 
-
+  const formatDateString = (dateString) => {
+    const options = { weekday: 'long', month: 'long', day: 'numeric' }
+    const formattedDate = new Date(dateString).toLocaleDateString('en-US', options)
+    return formattedDate
+  }
 
   const searchWeather = () => {
     console.log(search)
-    fetch(`${api.base}current.json?key=${api.key}&q=${search}`)
-      .then((currentRes) => currentRes.json())
-      .then((currentResult) => {
-        console.log(currentResult)
+    fetch(`${api.base}forecast.json?key=${api.key}&q=${search}`)
+      .then((res) => res.json())
+      .then((result) => {
+        setWeatherData(result)
+        console.log(result)
         })
   }
 
 
   return (
-    <div className='header'>
-      <h1>Weather App</h1>
+    <>
+    <div className='search-container'>
+    <div className='search-header'>
       <input
         type='text'
         placeholder='search...'
         onChange={ (e) => setSearch(e.target.value) }
         />
-        <button onClick={searchWeather}>Search</button>
-
-        <p>New York City, USA</p>
-        <p>32 ºF</p>
-        <p>Sunny</p>
+          <button onClick={searchWeather}> < img className='search-icon' src='assets/searchicon.png' alt='' />
+          </button>
+          </div>
+      {weatherData && (
+        <div className='header-results'>
+        <h3>{weatherData.location.name}</h3>
+        <p>{formatDateString(weatherData.location.localtime)}</p>
+        </div>
+      )}
     </div>
+    </>
   )
 }
 

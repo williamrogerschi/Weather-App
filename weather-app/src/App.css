@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Power Grotesk';
-  src: url('PowerGroteskTrial-Regular.otf') format('opentype');
+  src: url('fonts/PowerGroteskTrial-Regular.otf') format('opentype');
 }
 
 
@@ -12,17 +12,13 @@
 html,
 body {
   background-color: var(--background);
-  background-image: url('/hot.jpeg');
+  background-image: url('assets/hot.jpeg');
   background-size: cover;
   color: var(--primary-text-color);
   font-family: 'Power Grotesk', sans-serif;
 }
 
 .App {
-  display: block;
-  place-items: center;
-  text-align: center;
-
 
   @media screen and (max-width:1200px) {
     min-height: 100vh;
@@ -40,3 +36,4 @@ body {
 
   }
 }
+
