@@ -15,7 +15,13 @@ const Home = () => {
   const [future, setFuture] = useState(null)
 
   const formatDateString = (dateString) => {
-    const options = { weekday: 'long', month: 'long', day: 'numeric' };
+    const options = { weekday: 'long', month: 'long', day: 'numeric' }
+    const formattedDate = new Date(dateString.replace(/-/g, '/')).toLocaleDateString('en-US', options)
+    return formattedDate;
+  }
+
+  const formatDayString = (dateString) => {
+    const options = { weekday: 'short' };
     const formattedDate = new Date(dateString.replace(/-/g, '/')).toLocaleDateString('en-US', options);
     return formattedDate;
   };
@@ -43,7 +49,7 @@ const Home = () => {
 
 
   return (
-    <>
+    <div className='main'>
       <div className='search-container'>
         <div className='searchbar-wrapper'>
           <div className='search-header'>
@@ -65,23 +71,25 @@ const Home = () => {
         </div>
         {weatherData && (
           <div className='temp'>
+
             <p className='current-temp'>{weatherData.current.temp_f}º</p>
             <p className='current-condition'>{weatherData.current.condition.text}</p>
           </div>
         )}
+              </div>
 {future && future.forecast && future.forecast.forecastday && (
-  <div className='3-day'>
+  <div className='two-day'>
     {future.forecast.forecastday.slice(1, 3).map((day) => (
       <div key={day.date_epoch} className='forecast-day'>
-        <p className='forecast-date'>{formatDateString(day.date)}</p>
-        <p className='forecast-temp'>{day.day.maxtemp_f}º / {day.day.mintemp_f}º</p>
-        <p className='forecast-condition'>{day.day.condition.text}</p>
+                <p className='forecast-date'>{formatDayString(day.date)}</p>
+        <img className='forecast-img' src={day.day.condition.icon} />
+        <p className='forecast-temp'>{day.day.maxtemp_f}º | {day.day.mintemp_f}º</p>
+        {/* <p className='forecast-condition'>{day.day.condition.text}</p> */}
       </div>
     ))}
   </div>
 )}
-      </div>
-    </>
+    </div>
   )
 }
 
