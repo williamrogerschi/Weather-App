@@ -1,0 +1,36 @@
+.search-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2rem;
+    height: 100vh;
+}
+.search-header {
+    display: flex;
+    flex-direction: row;
+}
+.header-results {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem 0;
+}
+.location {
+    font-family: 'Power Grotesk Light', sans-serif;
+}
+.temp {
+    display: flex;
+    justify-content: baseline;
+    flex-direction: column;
+}
+.p-date {
+    font-family: 'Power Grotesk', sans-serif;
+    letter-spacing: 0.25px;
+    font-size: 2vh;
+}
+.current-temp {
+    font-family: 'Power Grotesk Bold', sans-serif;
+    font-size: 12vh;
+}
+.current-condition {
+    font-size: 2.5vh;
+}

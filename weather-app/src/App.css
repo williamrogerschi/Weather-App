@@ -1,12 +1,71 @@
 @font-face {
+  font-family: 'Power Grotesk Black';
+  src: url('fonts/PowerGroteskTrial-Black.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Power Grotesk Black Italic';
+  src: url('fonts/PowerGroteskTrial-BlackItalic.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Power Grotesk Bold';
+  src: url('fonts/PowerGroteskTrial-Bold.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Power Grotesk Bold Italic';
+  src: url('fonts/PowerGroteskTrial-BoldItalic.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Power Grotesk Heavy';
+  src: url('fonts/PowerGroteskTrial-Heavy.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Power Grotesk Italic';
+  src: url('fonts/PowerGroteskTrial-Italic.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Power Grotesk Light';
+  src: url('fonts/PowerGroteskTrial-Light.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Power Grotesk Light Italic';
+  src: url('fonts/PowerGroteskTrial-LightItalic.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Power Grotesk Medium Italic';
+  src: url('fonts/PowerGroteskTrial-MedIta.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Power Grotesk Medium';
+  src: url('fonts/PowerGroteskTrial-Medium.otf') format('opentype');
+}
+@font-face {
   font-family: 'Power Grotesk';
   src: url('fonts/PowerGroteskTrial-Regular.otf') format('opentype');
 }
+@font-face {
+  font-family: 'Power Grotesk Ultra Light Italic';
+  src: url('fonts/PowerGroteskTrial-UltLtIta.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Power Grotesk Ultra Bold Italic';
+  src: url('fonts/PowerGroteskTrial-UltBdIta.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Power Grotesk Ultra Bold';
+  src: url('fonts/PowerGroteskTrial-UltraBold.otf') format('opentype');
+}
+@font-face {
+  font-family: 'Power Grotesk Ultra Light';
+  src: url('fonts/PowerGroteskTrial-UltraLight.otf') format('opentype');
+}
+
 
 
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box; 
+  /* this includes padding and margin in the vh */
 }
 
 html,
