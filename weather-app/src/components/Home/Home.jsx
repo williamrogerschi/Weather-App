@@ -11,9 +11,7 @@ import patchySleetIcon from '../../../src/assets/weather/precipitation.png'
 import thunderIcon from '../../../src/assets/weather/thunderstorm.png'
 import windIcon from '../../../src/assets/weather/wind.png'
 import snowyIcon from '../../../src/assets/weather/snowy.png'
-
-
-
+import fogIcon from '../../../src/assets/weather/fog.png'
 
 
 const renderIcon = (apiCode) => {
@@ -42,14 +40,22 @@ const renderIcon = (apiCode) => {
 			return <img className="forecast-img" src={windIcon} alt="Blowing Snow" />
 		case 1117:
 			return <img className="forecast-img" src={snowyIcon} alt="Blizzard" />
-		case 1114:
-			return <img className="forecast-img" src={windIcon} alt="Blowing Snow" />
-		case 1114:
-			return <img className="forecast-img" src={windIcon} alt="Blowing Snow" />
-		case 1114:
-			return <img className="forecast-img" src={windIcon} alt="Blowing Snow" />
-		case 1114:
-			return <img className="forecast-img" src={windIcon} alt="Blowing Snow" />
+		case 1135:
+			return <img className="forecast-img" src={fogIcon} alt="Fog" />
+		case 1147:
+			return <img className="forecast-img" src={fogIcon} alt="Freezing Fog" />
+		case 1150:
+			return <img className="forecast-img" src={mistIcon} alt="Patchy Light Drizzle" />
+		case 1153:
+			return <img className="forecast-img" src={mistIcon} alt="Light Drizzle" />
+			case 1168:
+				return <img className="forecast-img" src={patchySleetIcon} alt="Freezing Drizzle" />
+			case 1171:
+				return <img className="forecast-img" src={patchySleetIcon} alt="Heavy Freezing Drizzle" />
+				case 1150:
+					return <img className="forecast-img" src={mistIcon} alt="Patchy Light Drizzle" />
+				case 1153:
+					return <img className="forecast-img" src={mistIcon} alt="Light Drizzle" />
 
 		default:
 			return null
