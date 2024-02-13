@@ -19,11 +19,6 @@ import lightSnowIcon from '../../../src/assets/weather/lightsnow.png'
 import hailIcon from '../../../src/assets/weather/hail.png'
 
 
-
-
-
-
-
 const renderIcon = (apiCode) => {
 	switch (apiCode) {
 		case 1000:
@@ -130,7 +125,6 @@ const renderIcon = (apiCode) => {
 	}
 }
 
-
 const api = {
 	key: '891161eaa5ee484fb27145836232009',
 	base: 'http://api.weatherapi.com/v1/',
@@ -160,21 +154,37 @@ const Home = () => {
 	const searchWeather = () => {
 		console.log(search)
 		fetch(`${api.base}current.json?key=${api.key}&q=${search}`)
-			.then((res) => res.json())
+			.then((res) => {
+				if (!res.ok) {
+					throw new Error('City not found')
+				}
+				return res.json()
+			})
 			.then((result) => {
 				setWeatherData(result)
 				console.log(result)
 				searchFuture()
+			})
+			.catch((error) => {
+				console.error("error fetching current weather:", error.message)
 			})
 	}
 
 	const searchFuture = () => {
 		console.log(search)
 		fetch(`${api.base}forecast.json?key=${api.key}&q=${search}&days=3`)
-			.then((forecastRes) => forecastRes.json())
+			.then((forecastRes) => {
+				if (!forecastRes.ok) {
+					throw new Error('City not found')
+				}
+				return forecastRes.json()
+			})
 			.then((forecastResult) => {
 				setFuture(forecastResult)
 				console.log(forecastResult)
+			})
+			.catch((error) => {
+				console.error('Error fetching forecast:', error.message)
 			})
 	}
 
