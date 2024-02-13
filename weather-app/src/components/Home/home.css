@@ -59,10 +59,15 @@
     flex-wrap: wrap;
     font-size: 2vh;
     gap: 0.25rem;
+    max-width: 60%;
 }
 .forecast-img {
     height: 4rem;
     width: 4rem;
+}
+.forecast-condition {
+    max-height: 10%;
+    font-size: 1.8vh;
 }
 
 /* searchbar CSS */

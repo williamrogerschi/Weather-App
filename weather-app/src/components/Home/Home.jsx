@@ -11,7 +11,17 @@ import patchySleetIcon from '../../../src/assets/weather/precipitation.png'
 import thunderIcon from '../../../src/assets/weather/thunderstorm.png'
 import windIcon from '../../../src/assets/weather/wind.png'
 import snowyIcon from '../../../src/assets/weather/snowy.png'
+import moderateSnowIcon from '../../../src/assets/weather/snow.png'
 import fogIcon from '../../../src/assets/weather/fog.png'
+import rainIcon from '../../../src/assets/weather/rain.png'
+import heavyRainIcon from '../../../src/assets/weather/heavy-rain.png'
+import lightSnowIcon from '../../../src/assets/weather/lightsnow.png'
+import hailIcon from '../../../src/assets/weather/hail.png'
+
+
+
+
+
 
 
 const renderIcon = (apiCode) => {
@@ -48,14 +58,72 @@ const renderIcon = (apiCode) => {
 			return <img className="forecast-img" src={mistIcon} alt="Patchy Light Drizzle" />
 		case 1153:
 			return <img className="forecast-img" src={mistIcon} alt="Light Drizzle" />
-			case 1168:
-				return <img className="forecast-img" src={patchySleetIcon} alt="Freezing Drizzle" />
-			case 1171:
-				return <img className="forecast-img" src={patchySleetIcon} alt="Heavy Freezing Drizzle" />
-				case 1150:
-					return <img className="forecast-img" src={mistIcon} alt="Patchy Light Drizzle" />
-				case 1153:
-					return <img className="forecast-img" src={mistIcon} alt="Light Drizzle" />
+		case 1168:
+			return <img className="forecast-img" src={patchySleetIcon} alt="Freezing Drizzle" />
+		case 1171:
+			return <img className="forecast-img" src={patchySleetIcon} alt="Heavy Freezing Drizzle" />
+		case 1180:
+			return <img className="forecast-img" src={patchyRainIcon} alt="Patchy Light Rain" />
+		case 1183:
+			return <img className="forecast-img" src={mistIcon} alt="Light Rain" />
+		case 1186:
+			return <img className="forecast-img" src={rainIcon} alt="Moderate Rain at Times" />
+		case 1189:
+			return <img className="forecast-img" src={rainIcon} alt="Moderate Rain" />
+		case 1192:
+			return <img className="forecast-img" src={heavyRainIcon} alt="Heavy Rain at Times" />
+		case 1195:
+			return <img className="forecast-img" src={heavyRainIcon} alt="Heavy Rain" />
+		case 1198:
+			return <img className="forecast-img" src={patchySleetIcon} alt="Light Freezing Rain" />
+		case 1201:
+			return <img className="forecast-img" src={patchySleetIcon} alt="Heavy Freezing Rain" />
+		case 1204:
+			return <img className="forecast-img" src={patchySnowIcon} alt="Light Sleet" />
+		case 1207:
+			return <img className="forecast-img" src={lightSnowIcon} alt="Heavy Sleet" />
+		case 1210:
+			return <img className="forecast-img" src={snowyIcon} alt="Patchy Light Snow" />
+		case 1213:
+			return <img className="forecast-img" src={lightSnowIcon} alt="Light Snow" />
+		case 1216:
+			return <img className="forecast-img" src={snowyIcon} alt="Patchy Moderate Snow" />
+		case 1219:
+			return <img className="forecast-img" src={moderateSnowIcon} alt="Moderate Snow" />
+		case 1216:
+			return <img className="forecast-img" src={snowyIcon} alt="Patchy Heavy Snow" />
+		case 1219:
+			return <img className="forecast-img" src={moderateSnowIcon} alt="Heavy Snow" />
+		case 1237:
+			return <img className="forecast-img" src={hailIcon} alt="Ice Pellets" />
+		case 1240:
+			return <img className="forecast-img" src={rainIcon} alt="Light Rain Showers" />
+		case 1243:
+			return <img className="forecast-img" src={heavyRainIcon} alt="Moderate or Heavy Rain Showers" />
+		case 1246:
+			return <img className="forecast-img" src={heavyRainIcon} alt="Torrential Rain Showers" />
+		case 1249:
+			return <img className="forecast-img" src={patchySleetIcon} alt="Light Sleet Showers" />
+		case 1252:
+			return <img className="forecast-img" src={patchySleetIcon} alt="Moderate or Heavy Sleet Showers" />
+		case 1243:
+			return <img className="forecast-img" src={heavyRainIcon} alt="Moderate or Heavy Rain Showers" />
+		case 1255:
+			return <img className="forecast-img" src={lightSnowIcon} alt="Light Snow Showers" />
+		case 1258:
+			return <img className="forecast-img" src={moderateSnowIcon} alt="Moderate or Heavy Snow Showers" />
+		case 1261:
+			return <img className="forecast-img" src={hailIcon} alt="Light Showers of Ice Pellets" />
+		case 1264:
+			return <img className="forecast-img" src={hailIcon} alt="Moderate Showers of Ice Pellets" />
+		case 1273:
+			return <img className="forecast-img" src={thunderIcon} alt="Light Rain with Thunder" />
+		case 1276:
+			return <img className="forecast-img" src={thunderIcon} alt="Moderate or Heavy Rain with Thunder" />
+		case 1279:
+			return <img className="forecast-img" src={thunderIcon} alt="Patchy Light Snow with Thunder " />
+		case 1282:
+			return <img className="forecast-img" src={thunderIcon} alt="Moderate or Heavy Snow with Thunder " />
 
 		default:
 			return null
@@ -129,7 +197,7 @@ const Home = () => {
 							onKeyDown={handleKeyPress}
 						/>
 						<button onClick={searchWeather}>
-							<img className="search-icon" src="assets/searchicon.png" alt="" />
+							<img className="search-icon" src="src/assets/searchicon.png" alt="" />
 						</button>
 					</div>
 					{weatherData && (
