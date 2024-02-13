@@ -60,7 +60,6 @@
 }
 
 
-
 * {
   margin: 0;
   padding: 0;
@@ -70,12 +69,11 @@
 
 html,
 body {
-  background-color: var(--background);
-  background-image: url('assets/hot.jpeg');
-  background-size: cover;
+  background: var(--background);
   color: var(--primary-text-color);
   font-family: 'Power Grotesk', sans-serif;
 }
+
 
 .App {
 

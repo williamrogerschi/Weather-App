@@ -1,6 +1,24 @@
 :root {
-  --background: #D5C5C8;
+  /* sunny */
+  --backgroundSunny: -webkit-linear-gradient(45deg, #ff91008f,#b3b96e3f);
+  --backgroundSunny: linear-gradient(45deg, #ff91008f,#b3b96e3f);
+  /* cloudy */
+  --backgroundCloudy: -webkit-linear-gradient(45deg, #6b7080b5,#8398bc4b);
+  --backgroundCloudy: linear-gradient(45deg, #6b7080b5,#8398bc4b);
+  /* rainy */
+  --backgroundRainy: -webkit-linear-gradient(45deg, #5f747bb4,#96b4a84b);
+  --backgroundRainy: linear-gradient(45deg, #5f747bb4,#96b4a84b);
+  /* thunder */
+  --backgroundThunder: -webkit-linear-gradient(45deg, #d1ed196d,#793eb74b);
+  --backgroundThunder: linear-gradient(45deg, #d1ed196d,#793eb74b);
+  /* snowy */
+  --backgroundSnowy: -webkit-linear-gradient(45deg, #57b9c86d,#f5f8f74b);
+  --backgroundSnowy: linear-gradient(45deg, #57b9c86d,#f5f8f74b);
+  /* default */
+  --background: -webkit-linear-gradient(45deg, #349fb254,#e2ca7b4b);
+  --background: linear-gradient(45deg, #a4acad54,#d0cdc34b);
+  /* night */
+  --backgroundNight: -webkit-linear-gradient(45deg, #14184089,#2e20394b);
+  --backgroundNight: linear-gradient(45deg, #14184089,#2e20394b);
   --primary-text-color: #252422;
-  --background-image: url('./hot.jpeg');
-  /* color: #d5e0e0; */
 }
