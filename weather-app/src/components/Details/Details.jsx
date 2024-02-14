@@ -22,6 +22,10 @@ const Details = () => {
             <h3>24-hour forecast</h3>
             <h1>{city}</h1>
         </div>
+        <div className='details-24'>
+            
+        </div>
+        <div className='details-content'>
         {weatherData.forecast && weatherData.forecast.forecastday && weatherData.forecast.forecastday[0].astro && (
         <div className='detail-astro'>
             <p>Sunrise {weatherData.forecast.forecastday[0].astro.sunrise}</p>
@@ -42,6 +46,7 @@ const Details = () => {
             <p>Pressure {weatherData.current.pressure_mb} mbar</p>
         </div>
         )}
+    </div>
     </div>
   )
 }
