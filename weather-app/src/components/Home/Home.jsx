@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import './home.css'
 import sunnyIcon from '/assets/weather/sun.png'
 import partlyCloudyIcon from '/assets/weather/partly-cloudy.png'
 import cloudyIcon from '/assets/weather/cloud.png'
@@ -18,6 +17,7 @@ import heavyRainIcon from '/assets/weather/heavy-rain.png'
 import lightSnowIcon from '/assets/weather/lightsnow.png'
 import hailIcon from '/assets/weather/hail.png'
 import Full from '../Full/Full'
+import './home.css'
 
 
 const renderIcon = (apiCode) => {
@@ -204,6 +204,8 @@ const Home = () => {
 	const [search, setSearch] = useState('')
 	const [weatherData, setWeatherData] = useState(null)
 	const [future, setFuture] = useState(null)
+	const [selectedCity, setSelectedCity ] = useState('')
+
 
 	const formatDateString = (dateString) => {
 		const options = { weekday: 'long', month: 'long', day: 'numeric' }
@@ -231,6 +233,7 @@ const Home = () => {
 				return res.json()
 			})
 			.then((result) => {
+				setSelectedCity(result.location.name)
 				setWeatherData(result)
 				console.log(result)
 				searchFuture()
@@ -282,7 +285,7 @@ const Home = () => {
 						</button>
 						</div>
 						<div className='full-container'>
-						<Full />
+						<Full city={selectedCity} weatherData={weatherData} />
 						</div>
 					</div>
 					{weatherData && (
