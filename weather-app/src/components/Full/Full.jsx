@@ -1,13 +1,16 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './full.css'
 
 const Full = () => {
   return (
     <>
     <button className='full-btn'>
-    <div className='full'></div>
-    <div className='full'></div>
-    <div className='full'></div>
+        <Link className='link' to='Details'>
+            <div className='full'></div>
+            <div className='full'></div>
+            <div className='full'></div>
+        </Link>
     </button>
     </>
   )
