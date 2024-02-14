@@ -1,22 +1,23 @@
 import React, { useState } from 'react'
 import './home.css'
-import sunnyIcon from '../../../src/assets/weather/sun.png'
-import partlyCloudyIcon from '../../../src/assets/weather/partly-cloudy.png'
-import cloudyIcon from '../../../src/assets/weather/cloud.png'
-import overcastIcon from '../../../src/assets/weather/clouds.png'
-import mistIcon from '../../../src/assets/weather/light-rain.png'
-import patchyRainIcon from '../../../src/assets/weather/rainsun.png'
-import patchySnowIcon from '../../../src/assets/weather/precipitation-sun.png'
-import patchySleetIcon from '../../../src/assets/weather/precipitation.png'
-import thunderIcon from '../../../src/assets/weather/thunderstorm.png'
-import windIcon from '../../../src/assets/weather/wind.png'
-import snowyIcon from '../../../src/assets/weather/snowy.png'
-import moderateSnowIcon from '../../../src/assets/weather/snow.png'
-import fogIcon from '../../../src/assets/weather/fog.png'
-import rainIcon from '../../../src/assets/weather/rain.png'
-import heavyRainIcon from '../../../src/assets/weather/heavy-rain.png'
-import lightSnowIcon from '../../../src/assets/weather/lightsnow.png'
-import hailIcon from '../../../src/assets/weather/hail.png'
+import sunnyIcon from '/assets/weather/sun.png'
+import partlyCloudyIcon from '/assets/weather/partly-cloudy.png'
+import cloudyIcon from '/assets/weather/cloud.png'
+import overcastIcon from '/assets/weather/clouds.png'
+import mistIcon from '/assets/weather/light-rain.png'
+import patchyRainIcon from '/assets/weather/rainsun.png'
+import patchySnowIcon from '/assets/weather/precipitation-sun.png'
+import patchySleetIcon from '/assets/weather/precipitation.png'
+import thunderIcon from '/assets/weather/thunderstorm.png'
+import windIcon from '/assets/weather/wind.png'
+import snowyIcon from '/assets/weather/snowy.png'
+import moderateSnowIcon from '/assets/weather/snow.png'
+import fogIcon from '/assets/weather/fog.png'
+import rainIcon from '/assets/weather/rain.png'
+import heavyRainIcon from '/assets/weather/heavy-rain.png'
+import lightSnowIcon from '/assets/weather/lightsnow.png'
+import hailIcon from '/assets/weather/hail.png'
+import Full from '../Full/Full'
 
 
 const renderIcon = (apiCode) => {
@@ -269,6 +270,7 @@ const Home = () => {
 			<div className="search-container">
 				<div className="searchbar-wrapper">
 					<div className="search-header">
+						<div className='search-header-wrapper'>
 						<input
 							type="text"
 							placeholder="search..."
@@ -276,8 +278,12 @@ const Home = () => {
 							onKeyDown={handleKeyPress}
 						/>
 						<button onClick={searchWeather}>
-							<img className="search-icon" src="src/assets/searchicon.png" alt="" />
+							<img className="search-icon" src="/assets/searchicon.png" alt="" />
 						</button>
+						</div>
+						<div className='full-container'>
+						<Full />
+						</div>
 					</div>
 					{weatherData && (
 						<div className="header-results">
@@ -309,7 +315,7 @@ const Home = () => {
 							<p className="forecast-temp">
 								{day.day.maxtemp_f}º | {day.day.mintemp_f}º
 							</p>
-							<p className='forecast-condition'>{day.day.condition.text}</p>
+							{/* <p className='forecast-condition'>{day.day.condition.text}</p> */}
 						</div>
 					))}
 				</div>

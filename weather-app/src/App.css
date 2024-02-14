@@ -67,9 +67,13 @@
   /* this includes padding and margin in the vh */
 }
 
+html, body::before {
+  background: rgba(0, 0, 0, 0);
+}
+
 html,
 body {
-  background: var(--background);
+  background-image: var(--background-image);
   color: var(--primary-text-color);
   font-family: 'Power Grotesk', sans-serif;
 }

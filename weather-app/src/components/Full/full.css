@@ -1,0 +1,20 @@
+.full {
+    width: 0.25rem;
+    height: 0.25rem;
+    margin: 3px 0;
+    border-radius: 50%;
+    background-color: black;
+}
+
+.full-btn {
+    display: flex;
+    padding: 2rem 1rem;
+    flex-direction: column;
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+    position: fixed;
+    top: 0;
+    right: 1rem;
+}
+
