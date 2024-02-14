@@ -285,7 +285,7 @@ const Home = () => {
 						</button>
 						</div>
 						<div className='full-container'>
-						<Full city={selectedCity} weatherData={weatherData} />
+						<Full city={selectedCity} weatherData={future} />
 						</div>
 					</div>
 					{weatherData && (
@@ -314,7 +314,6 @@ const Home = () => {
 						<div key={day.date_epoch} className="forecast-day">
 							<p className="forecast-date">{formatDayString(day.date)}</p>
 							{renderIcon(day.day.condition.code)}
-							{/* <img className="forecast-img" src={day.day.condition.icon} /> */}
 							<p className="forecast-temp">
 								{day.day.maxtemp_f}º | {day.day.mintemp_f}º
 							</p>
