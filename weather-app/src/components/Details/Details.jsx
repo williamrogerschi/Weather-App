@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams, useLocation } from 'react-router-dom'
+import ReactApexChart from 'react-apexcharts'
 import './details.css'
 
 
@@ -13,17 +14,85 @@ const Details = () => {
         return <p>Loading...</p>
     }
 
-    console.log('details weather:', weatherData)
+    const hourlyData = weatherData.forecast.forecastday[0].hour
+
+    const [chartData, setChartData] = useState ({
+        options: {
+            xaxis: {
+                categories: [],
+                title: {
+                    text: '',
+                },
+            },
+            yaxis: {
+                title: {
+                    text: '',
+                },
+            },
+        },
+        series: [
+            {
+                name: 'Temperature (ºF)',
+                data: hourlyData.map((hourData) => hourData.temp_f),
+            },
+        ],
+    })
+
+    useEffect(() => {
+        if (weatherData) {
+            const currentHour = new Date().getHours()
+            const next12HoursData = weatherData.forecast.forecastday[0].hour.slice(
+                currentHour,
+                currentHour + 12
+            )
+
+            const newChartData = {
+                options: {
+                    xaxis: {
+                        categories: next12HoursData.map((hourData) => hourData.time.split(' ')[1]),
+                        title: {
+                            text: '',
+                        },
+                    },
+                    yaxis: {
+                        title: {
+                            text: '',
+                        },
+                    },
+                    dataLabels: {
+                        enabled: false,
+                    },
+                    colors: ['rgba(0, 0, 0, 0.55)']
+                },
+                series: [
+                    {
+                        name: 'Temperatrure (ºF)',
+                        data: next12HoursData.map((hourData) => hourData.temp_f),
+                    },
+                ],
+            }
+
+            setChartData(newChartData)
+        }
+    }, [weatherData])
+
+
 
 
   return (
     <div className='details'>
         <div className='details-header'>
-            <h3>24-hour forecast</h3>
+            <h3>12-hour forecast</h3>
             <h1>{city}</h1>
         </div>
-        <div className='details-24'>
-            
+        <div className='details-12'>
+            <ReactApexChart 
+                className='react-chart'
+                options={chartData.options}
+                series={chartData.series}
+                type='area'
+                height={250}
+            />
         </div>
         <div className='details-content'>
         {weatherData.forecast && weatherData.forecast.forecastday && weatherData.forecast.forecastday[0].astro && (

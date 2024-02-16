@@ -163,7 +163,6 @@ const changeBG = (apiCode) => {
 				background: 'var(--backgroundRainy)'
 			}
 		case 1069:
-		case 1072:
 		case 1114:
 		case 1117:
 		case 1147:

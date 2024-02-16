@@ -1,0 +1,7 @@
+.react-chart {
+    padding: 0.25rem;
+    font-family: 'Power Grotesk', sans-serif;
+}
+.apexcharts-zoomin-icon, .apexcharts-zoomout-icon, .apexcharts-zoom-icon, .apexcharts-reset-icon, .apexcharts-zoomout-icon, .apexcharts-menu-icon, .apexcharts-pan-icon {
+    display: none;
+}
