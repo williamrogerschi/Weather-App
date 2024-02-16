@@ -83,7 +83,7 @@ const Details = () => {
   return (
     <div className='details'>
         <div className='details-header'>
-            <Full2 />
+            <Full2 city={city} weatherData={weatherData} />
             <h3>12-hour forecast</h3>
             <h1>{city}</h1>
         </div>

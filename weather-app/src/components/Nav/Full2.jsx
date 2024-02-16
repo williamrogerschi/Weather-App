@@ -1,22 +1,16 @@
-import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import './full2.css'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-const Full2 = ({ city }) => {
-    console.log('Full2', city)
-
-    const location = useLocation()
-    const cityFromDetails = location.state && location.state.city
-
+const Full2 = ({ selectedCity, future }) => {
     return (
-        <>
-            <Link to={{ pathname: '/', state: { city: cityFromDetails } }} className='full-btn'>
+        <Link to="/" state={{ selectedCity, future }}>
+            <button className='full-btn'>
                 <div className='full'></div>
                 <div className='full'></div>
                 <div className='full'></div>
-            </Link>
-        </>
-      )
-    }
-    
-    export default Full2
+            </button>
+        </Link>
+    );
+}
+
+export default Full2;

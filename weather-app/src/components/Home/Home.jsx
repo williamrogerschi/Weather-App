@@ -17,6 +17,7 @@ import heavyRainIcon from '/assets/weather/heavy-rain.png'
 import lightSnowIcon from '/assets/weather/lightsnow.png'
 import hailIcon from '/assets/weather/hail.png'
 import Full from '../Nav/Full'
+import { useNavigate, useLocation } from 'react-router-dom';
 import './home.css'
 
 
@@ -201,6 +202,9 @@ const api = {
 
 const Home = () => {
 
+	const navigate = useNavigate();
+	const location = useLocation();
+
 	const [search, setSearch] = useState('')
 	const [weatherData, setWeatherData] = useState(null)
 	const [future, setFuture] = useState(null)
@@ -251,6 +255,14 @@ const Home = () => {
 		}
 	}
 
+	useEffect(() => {
+
+		const { city, weatherData } = location.state || {};
+		if (city && weatherData) {
+		  setSelectedCity(city);
+		  setWeatherData(weatherData);
+		}
+	  }, [location.state]);
 
 	return (
 		<div className="main" style={weatherData ? changeBG(weatherData.current.condition.code) : {}}>
