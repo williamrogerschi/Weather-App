@@ -36,3 +36,14 @@
 .container p {
     margin: 0;
 }
+.full-btn {
+    display: flex;
+    padding: 1rem 1rem;
+    flex-direction: column;
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+    position: fixed;
+    top: 0;
+    right: 1rem;
+}
