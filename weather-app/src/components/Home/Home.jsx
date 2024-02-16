@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import sunnyIcon from '/assets/weather/sun.png'
 import partlyCloudyIcon from '/assets/weather/partly-cloudy.png'
 import cloudyIcon from '/assets/weather/cloud.png'
@@ -16,7 +16,7 @@ import rainIcon from '/assets/weather/rain.png'
 import heavyRainIcon from '/assets/weather/heavy-rain.png'
 import lightSnowIcon from '/assets/weather/lightsnow.png'
 import hailIcon from '/assets/weather/hail.png'
-import Full from '../Full/Full'
+import Full from '../Nav/Full'
 import './home.css'
 
 
@@ -200,10 +200,11 @@ const api = {
 }
 
 const Home = () => {
+
 	const [search, setSearch] = useState('')
 	const [weatherData, setWeatherData] = useState(null)
 	const [future, setFuture] = useState(null)
-	const [selectedCity, setSelectedCity ] = useState('')
+	const [selectedCity, setSelectedCity] = useState('')
 
 
 	const formatDateString = (dateString) => {
@@ -222,43 +223,27 @@ const Home = () => {
 		return formattedDate
 	}
 
-	const searchWeather = () => {
-		console.log(search)
-		fetch(`${api.base}current.json?key=${api.key}&q=${search}`)
-			.then((res) => {
-				if (!res.ok) {
-					throw new Error('City not found')
-				}
-				return res.json()
-			})
-			.then((result) => {
-				setSelectedCity(result.location.name)
-				setWeatherData(result)
-				console.log(result)
-				searchFuture()
-			})
-			.catch((error) => {
-				console.error("error fetching current weather:", error.message)
-			})
-	}
+	const searchWeather = async () => {
+		try {
+			const currentWeatherResponse = await fetch(`${api.base}current.json?key=${api.key}&q=${search}`);
+			if (!currentWeatherResponse.ok) {
+				throw new Error('City not found');
+			}
+			const currentWeatherResult = await currentWeatherResponse.json();
+			setSelectedCity(currentWeatherResult.location.name);
+			setWeatherData(currentWeatherResult);
 
-	const searchFuture = () => {
-		console.log(search)
-		fetch(`${api.base}forecast.json?key=${api.key}&q=${search}&days=3`)
-			.then((forecastRes) => {
-				if (!forecastRes.ok) {
-					throw new Error('City not found')
-				}
-				return forecastRes.json()
-			})
-			.then((forecastResult) => {
-				setFuture(forecastResult)
-				console.log(forecastResult)
-			})
-			.catch((error) => {
-				console.error('Error fetching forecast:', error.message)
-			})
-	}
+			const forecastResponse = await fetch(`${api.base}forecast.json?key=${api.key}&q=${search}&days=3`);
+			if (!forecastResponse.ok) {
+				throw new Error('City not found');
+			}
+			const forecastResult = await forecastResponse.json();
+			setFuture(forecastResult);
+
+		} catch (error) {
+			console.error("error fetching weather:", error.message)
+		}
+	};
 
 	const handleKeyPress = (event) => {
 		if (event.key === 'Enter') {
@@ -273,18 +258,18 @@ const Home = () => {
 				<div className="searchbar-wrapper">
 					<div className="search-header">
 						<div className='search-header-wrapper'>
-						<input
-							type="text"
-							placeholder="search..."
-							onChange={(e) => setSearch(e.target.value)}
-							onKeyDown={handleKeyPress}
-						/>
-						<button onClick={searchWeather}>
-							<img className="search-icon" src="/assets/searchicon.png" alt="" />
-						</button>
+							<input
+								type="text"
+								placeholder="search..."
+								onChange={(e) => setSearch(e.target.value)}
+								onKeyDown={handleKeyPress}
+							/>
+							<button onClick={searchWeather}>
+								<img className="search-icon" src="/assets/searchicon.png" alt="" />
+							</button>
 						</div>
 						<div className='full-container'>
-						<Full city={selectedCity} weatherData={future} />
+							<Full city={selectedCity} weatherData={future} />
 						</div>
 					</div>
 					{weatherData && (

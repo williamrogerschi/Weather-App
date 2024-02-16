@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, useLocation } from 'react-router-dom'
 import ReactApexChart from 'react-apexcharts'
+import Full2 from '../Nav/Full2'
 import './details.css'
 
 
@@ -82,6 +83,7 @@ const Details = () => {
   return (
     <div className='details'>
         <div className='details-header'>
+            <Full2 />
             <h3>12-hour forecast</h3>
             <h1>{city}</h1>
         </div>
