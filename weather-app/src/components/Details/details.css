@@ -5,3 +5,34 @@
 .apexcharts-zoomin-icon, .apexcharts-zoomout-icon, .apexcharts-zoom-icon, .apexcharts-reset-icon, .apexcharts-zoomout-icon, .apexcharts-menu-icon, .apexcharts-pan-icon {
     display: none;
 }
+.details-header {
+    display: block;
+    text-align: center;
+    padding-top: 1rem;
+}
+.details-wrapper {
+    display: flex;
+    justify-content: center;
+}
+.details-content {
+    font-size: 1.9vh;
+    display: grid;
+    align-items: start;
+    gap: 2rem;
+    padding: 3rem;
+}
+.row-wrapper {
+    display: grid;
+    gap: 3rem;
+    padding: 1vh 0;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 2px solid black;
+}
+.container {
+    flex: 1;
+    text-align: left;
+}
+
+.container p {
+    margin: 0;
+}

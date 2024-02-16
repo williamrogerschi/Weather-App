@@ -19,6 +19,7 @@ import hailIcon from '/assets/weather/hail.png'
 import Full from '../Nav/Full'
 import { useNavigate, useLocation } from 'react-router-dom';
 import './home.css'
+import Details from '../Details/Details'
 
 
 const renderIcon = (apiCode) => {
