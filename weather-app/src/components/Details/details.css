@@ -1,5 +1,4 @@
 .react-chart {
-    padding: 0.25rem;
     font-family: 'Power Grotesk', sans-serif;
 }
 .apexcharts-zoomin-icon, .apexcharts-zoomout-icon, .apexcharts-zoom-icon, .apexcharts-reset-icon, .apexcharts-zoomout-icon, .apexcharts-menu-icon, .apexcharts-pan-icon {
@@ -19,7 +18,7 @@
     display: grid;
     align-items: start;
     gap: 2rem;
-    padding: 3rem;
+    padding: 3rem 0rem;
 }
 .row-wrapper {
     display: grid;
@@ -36,14 +35,4 @@
 .container p {
     margin: 0;
 }
-.full-btn {
-    display: flex;
-    padding: 1rem 1rem;
-    flex-direction: column;
-    border: none;
-    background-color: inherit;
-    cursor: pointer;
-    position: fixed;
-    top: 0;
-    right: 1rem;
-}
+

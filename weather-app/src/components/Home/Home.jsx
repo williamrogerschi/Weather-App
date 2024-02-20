@@ -16,7 +16,6 @@ import rainIcon from '/assets/weather/rain.png'
 import heavyRainIcon from '/assets/weather/heavy-rain.png'
 import lightSnowIcon from '/assets/weather/lightsnow.png'
 import hailIcon from '/assets/weather/hail.png'
-import Full from '../Nav/Full'
 import { useNavigate, useLocation } from 'react-router-dom';
 import './home.css'
 import Details from '../Details/Details'
@@ -203,8 +202,7 @@ const api = {
 
 const Home = () => {
 
-	const navigate = useNavigate();
-	const location = useLocation();
+	const location = useLocation()
 
 	const [search, setSearch] = useState('')
 	const [weatherData, setWeatherData] = useState(null)
@@ -267,6 +265,7 @@ const Home = () => {
 
 	return (
 		<div className="main" style={weatherData ? changeBG(weatherData.current.condition.code) : {}}>
+			<div className='top-container'>
 			<div className="search-container">
 				<div className="searchbar-wrapper">
 					<div className="search-header">
@@ -280,9 +279,6 @@ const Home = () => {
 							<button onClick={searchWeather}>
 								<img className="search-icon" src="/assets/searchicon.png" alt="" />
 							</button>
-						</div>
-						<div className='full-container'>
-							<Full city={selectedCity} weatherData={future} />
 						</div>
 					</div>
 					{weatherData && (
@@ -298,7 +294,7 @@ const Home = () => {
 				</div>
 				{weatherData && (
 					<div className="temp">
-						<p className="current-temp">{weatherData.current.temp_f}º</p>
+						<p className="current-temp">{Math.round(weatherData.current.temp_f)}º</p>
 						<p className="current-condition">
 							{weatherData.current.condition.text}
 						</p>
@@ -314,11 +310,14 @@ const Home = () => {
 							<p className="forecast-temp">
 								{day.day.maxtemp_f}º | {day.day.mintemp_f}º
 							</p>
-							{/* <p className='forecast-condition'>{day.day.condition.text}</p> */}
 						</div>
 					))}
 				</div>
 			)}
+			</div>
+			<div className='details-container'>
+			<Details />
+			</div>
 		</div>
 	)
 }

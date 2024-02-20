@@ -1,6 +1,7 @@
 .main {
     display: flex;
     flex-direction: column;
+    padding: 2rem;
     height: 100vh;
 }
 
@@ -34,11 +35,16 @@ button {
     background-color: transparent;
     padding-right: 1rem;
 }
+.top-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+}
 .search-container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 2rem;
     height: 100vh;
 }
 .search-header {
@@ -49,10 +55,6 @@ button {
 .search-header-wrapper {
     display: flex;
     flex-direction: row;
-}
-.full-container {
-    display: flex;
-    justify-content: end;
 }
 .header-results {
     display: flex;
@@ -75,7 +77,7 @@ button {
 }
 .current-temp {
     font-family: 'Power Grotesk Ultra Bold', sans-serif;
-    font-size: 12vh;
+    font-size: 20vh;
     letter-spacing: 1px;
 }
 .current-condition {
@@ -88,7 +90,7 @@ button {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 0rem 3rem 2rem 3rem;
+    padding: 3rem 1rem 4rem 1rem;
 }
 .forecast-day {
     display: flex;
@@ -107,4 +109,3 @@ button {
 .forecast-condition {
     font-size: 1.8vh;
 }
-
