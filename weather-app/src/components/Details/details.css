@@ -46,4 +46,7 @@
     font-size: 1.3vh;
     font-weight: 500;
 }
-
+.react-chart path.apexcharts-xaxis-line,
+.react-chart path.apexcharts-yaxis-line {
+    stroke: black !important;
+}

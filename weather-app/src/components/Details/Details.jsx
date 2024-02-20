@@ -52,10 +52,17 @@ const Details = () => {
                 currentHour + 12
             )
 
+            const remainingHours = 12 - next12HoursData.length
+            const additionalHours = weatherData.forecast.forecastday[0].hour.slice(0, remainingHours)
+
+
             const newChartData = {
                 options: {
                     xaxis: {
-                        categories: next12HoursData.map((hourData) => hourData.time.split(' ')[1]),
+                        categories: [
+                            ...next12HoursData.map((hourData) => hourData.time.split(' ')[1]),
+                            ...additionalHours.map((hourData) => hourData.time.split(' ')[1]),
+                        ],
                         title: {
                             text: '',
                         },
@@ -73,7 +80,10 @@ const Details = () => {
                 series: [
                     {
                         name: 'Temperatrure (ºF)',
-                        data: next12HoursData.map((hourData) => hourData.temp_f),
+                       data: [
+                        ...next12HoursData.map((hourData) => hourData.temp_f),
+                        ...additionalHours.map((hourData) => hourData.temp_f),
+                    ],
                     },
                 ],
             }
@@ -82,8 +92,6 @@ const Details = () => {
         }
     }, [weatherData])
     // console.log(weatherData)
-
-
 
 
     return (
