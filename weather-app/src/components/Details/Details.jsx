@@ -31,9 +31,6 @@ const Details = () => {
                 title: {
                     text: '',
                 },
-                lines: {
-                    borderColor: 'transparent',
-                },
             },
         },
         series: [
