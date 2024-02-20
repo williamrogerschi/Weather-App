@@ -1,8 +1,8 @@
 .main {
     display: flex;
     flex-direction: column;
-    padding: 2rem;
-    height: 100vh;
+    padding: 1.5rem;
+    overflow-y: auto;
 }
 
 /* searchbar CSS */

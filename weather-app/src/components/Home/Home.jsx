@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import sunnyIcon from '/assets/weather/sun.png'
 import partlyCloudyIcon from '/assets/weather/partly-cloudy.png'
 import cloudyIcon from '/assets/weather/cloud.png'
@@ -16,7 +16,7 @@ import rainIcon from '/assets/weather/rain.png'
 import heavyRainIcon from '/assets/weather/heavy-rain.png'
 import lightSnowIcon from '/assets/weather/lightsnow.png'
 import hailIcon from '/assets/weather/hail.png'
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import './home.css'
 import Details from '../Details/Details'
 
@@ -258,68 +258,69 @@ const Home = () => {
 
 		const { city, weatherData } = location.state || {};
 		if (city && weatherData) {
-		  setSelectedCity(city);
-		  setWeatherData(weatherData);
+			setSelectedCity(city);
+			setWeatherData(weatherData);
 		}
-	  }, [location.state]);
+	}, [location.state])
+
 
 	return (
 		<div className="main" style={weatherData ? changeBG(weatherData.current.condition.code) : {}}>
-			<div className='top-container'>
+		  <div className='top-container'>
 			<div className="search-container">
-				<div className="searchbar-wrapper">
-					<div className="search-header">
-						<div className='search-header-wrapper'>
-							<input
-								type="text"
-								placeholder="search..."
-								onChange={(e) => setSearch(e.target.value)}
-								onKeyDown={handleKeyPress}
-							/>
-							<button onClick={searchWeather}>
-								<img className="search-icon" src="/assets/searchicon.png" alt="" />
-							</button>
-						</div>
-					</div>
-					{weatherData && (
-						<div className="header-results">
-							<h1 className="location">
-								{weatherData.location.name}, {weatherData.location.region}
-							</h1>
-							<p className="p-date">
-								{formatDateString(weatherData.location.localtime)}
-							</p>
-						</div>
-					)}
+			  <div className="searchbar-wrapper">
+				<div className="search-header">
+				  <div className='search-header-wrapper'>
+					<input
+					  type="text"
+					  placeholder="search..."
+					  onChange={(e) => setSearch(e.target.value)}
+					  onKeyDown={handleKeyPress}
+					/>
+					<button onClick={searchWeather}>
+					  <img className="search-icon" src="/assets/searchicon.png" alt="" />
+					</button>
+				  </div>
 				</div>
 				{weatherData && (
-					<div className="temp">
-						<p className="current-temp">{Math.round(weatherData.current.temp_f)}º</p>
-						<p className="current-condition">
-							{weatherData.current.condition.text}
-						</p>
-					</div>
+				  <div className="header-results">
+					<h1 className="location">
+					  {weatherData.location.name}, {weatherData.location.region}
+					</h1>
+					<p className="p-date">
+					  {formatDateString(weatherData.location.localtime)}
+					</p>
+				  </div>
 				)}
+			  </div>
+			  {weatherData && (
+				<div className="temp">
+				  <p className="current-temp">{Math.round(weatherData.current.temp_f)}º</p>
+				  <p className="current-condition">
+					{weatherData.current.condition.text}
+				  </p>
+				</div>
+			  )}
 			</div>
 			{future && future.forecast && future.forecast.forecastday && (
-				<div className="two-day">
-					{future.forecast.forecastday.slice(1, 3).map((day) => (
-						<div key={day.date_epoch} className="forecast-day">
-							<p className="forecast-date">{formatDayString(day.date)}</p>
-							{renderIcon(day.day.condition.code)}
-							<p className="forecast-temp">
-								{day.day.maxtemp_f}º | {day.day.mintemp_f}º
-							</p>
-						</div>
-					))}
-				</div>
+			  <div className="two-day">
+				{future.forecast.forecastday.slice(1, 3).map((day) => (
+				  <div key={day.date_epoch} className="forecast-day">
+					<p className="forecast-date">{formatDayString(day.date)}</p>
+					{renderIcon(day.day.condition.code)}
+					<p className="forecast-temp">
+					  {day.day.maxtemp_f}º | {day.day.mintemp_f}º
+					</p>
+				  </div>
+				))}
+			  </div>
 			)}
-			</div>
-			<div className='details-container'>
+		  </div>
+		  <div className='details-container'>
 			<Details />
-			</div>
+		  </div>
 		</div>
-	)
-}
-
-export default Home
+	  );
+	}
+	
+	export default Home;

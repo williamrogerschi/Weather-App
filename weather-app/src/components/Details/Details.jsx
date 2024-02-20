@@ -23,10 +23,16 @@ const Details = () => {
                 title: {
                     text: '',
                 },
+                axisTicks : {
+                    show: false,
+                },
             },
             yaxis: {
                 title: {
                     text: '',
+                },
+                lines: {
+                    borderColor: 'transparent',
                 },
             },
         },
@@ -75,7 +81,7 @@ const Details = () => {
             setChartData(newChartData)
         }
     }, [weatherData])
-    console.log(weatherData)
+    // console.log(weatherData)
 
 
 
