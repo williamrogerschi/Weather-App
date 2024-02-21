@@ -85,21 +85,31 @@ const Details = ({ city, weatherData, future }) => {
               <div className='row-wrapper'>
                 <div className='container'>
                   <p>Sunrise</p>
-                  <p>{astroData.sunrise}</p>
+                  <p>{future.forecastday[0].astro.sunrise}</p>
                 </div>
                 <div className='container'>
                   <p>Sunset</p>
-                  <p>{astroData.sunset}</p>
+                  <p>{future.forecastday[0].astro.sunset}</p>
                 </div>
               </div>
               <div className='row-wrapper'>
                 <div className='container'>
-                  <p>Moon</p>
-                  <p>{astroData.moon_phase}</p>
+                  <p>Moonrise</p>
+                  <p>{future.forecastday[0].astro.moonrise}</p>
+                </div>
+                <div className='container'>
+                  <p>Moonset</p>
+                  <p>{future.forecastday[0].astro.moonset}</p>
+                </div>
+              </div>
+              <div className='row-wrapper'>
+                <div className='container'>
+                  <p>Moon Phase</p>
+                  <p>{future.forecastday[0].astro.moon_phase}</p>
                 </div>
                 <div className='container'>
                   <p>Moon Illumination</p>
-                  <p>{astroData.moon_illumination}</p>
+                  <p>{future.forecastday[0].astro.moon_illumination}</p>
                 </div>
               </div>
             </>

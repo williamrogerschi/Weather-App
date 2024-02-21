@@ -263,7 +263,6 @@ const Home = () => {
 			setWeatherData(weatherData);
 		}
 	}, [location.state])
-	console.log('Home useEffect weatherData:', weatherData)
 
 
 	return (
