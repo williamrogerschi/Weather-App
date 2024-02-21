@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, useLocation } from 'react-router-dom'
-import ReactApexChart from 'react-apexcharts'
+import { LineChart, Line, ResponsiveContainer, XAxis, Tooltip} from 'recharts';
 import './details.css'
 
 
@@ -14,82 +14,38 @@ const Details = () => {
         return <p>Loading...</p>
     }
 
-    const hourlyData = weatherData.forecast.forecastday[0].hour
-
-    const [chartData, setChartData] = useState({
-        options: {
-            xaxis: {
-                categories: [],
-                title: {
-                    text: '',
-                },
-                axisTicks : {
-                    show: false,
-                },
-            },
-            yaxis: {
-                title: {
-                    text: '',
-                },
-            },
-        },
-        series: [
-            {
-                name: 'Temperature (ºF)',
-                data: hourlyData.map((hourData) => hourData.temp_f),
-            },
-        ],
-    })
+    const [chartData, setChartData] = useState([]);
 
     useEffect(() => {
-        if (weatherData) {
-            const currentHour = new Date().getHours()
-            const next12HoursData = weatherData.forecast.forecastday[0].hour.slice(
-                currentHour,
-                currentHour + 12
-            )
-
-            const remainingHours = 12 - next12HoursData.length
-            const additionalHours = weatherData.forecast.forecastday[0].hour.slice(0, remainingHours)
-
-
-            const newChartData = {
-                options: {
-                    xaxis: {
-                        categories: [
-                            ...next12HoursData.map((hourData) => hourData.time.split(' ')[1]),
-                            ...additionalHours.map((hourData) => hourData.time.split(' ')[1]),
-                        ],
-                        title: {
-                            text: '',
-                        },
-                    },
-                    yaxis: {
-                        title: {
-                            text: '',
-                        },
-                    },
-                    dataLabels: {
-                        enabled: false,
-                    },
-                    colors: ['rgba(0, 0, 0, 0.55)']
-                },
-                series: [
-                    {
-                        name: 'Temperatrure (ºF)',
-                       data: [
-                        ...next12HoursData.map((hourData) => hourData.temp_f),
-                        ...additionalHours.map((hourData) => hourData.temp_f),
-                    ],
-                    },
-                ],
-            }
-
-            setChartData(newChartData)
-        }
-    }, [weatherData])
-    // console.log(weatherData)
-
+      const fetchData = async () => {
+        const currentHour = new Date().getHours();
+        const next12HoursData = weatherData.forecast.forecastday[0].hour.slice(
+          currentHour,
+          currentHour + 12
+        );
+        const remainingHours = 12 - next12HoursData.length;
+        const additionalHours = weatherData.forecast.forecastday[0].hour.slice(0, remainingHours);
+  
+        const newChartData = [
+          ...next12HoursData.map((hourData) => ({
+            time: hourData.time.split(' ')[1],
+            temp_f: hourData.temp_f,
+          })),
+          ...additionalHours.map((hourData) => ({
+            time: hourData.time.split(' ')[1],
+            temp_f: hourData.temp_f,
+          })),
+        ];
+  
+        console.log('New Chart Data:', newChartData);
+        setChartData(newChartData);
+      };
+  
+      if (weatherData) {
+        fetchData();
+      }
+    }, [weatherData]);
+  
 
     return (
         <div className='details'>
@@ -97,13 +53,20 @@ const Details = () => {
                 <h3>12-hour forecast</h3>
             </div>
             <div className='details-12'>
-                <ReactApexChart
-                    className='react-chart'
-                    options={chartData.options}
-                    series={chartData.series}
-                    type='area'
-                    height={250}
-                />
+            <ResponsiveContainer width="100%" height={300}>
+                    <LineChart data={chartData}>
+                        <XAxis dataKey='time' />
+                        <Tooltip />
+                        <Line
+                            type="monotone"
+                            dataKey="temp_f"
+                            stroke="orange"
+                            strokeWidth={2}
+                            dot={{ fill: 'black', r: 4 }}
+                            label={{ value: 'Temperature (ºF)', position: 'top', fontWeight: '0' }}
+                        />
+                    </LineChart>
+                </ResponsiveContainer>
             </div>
             <div className='details-wrapper'>
             <div className='details-content'>

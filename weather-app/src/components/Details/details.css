@@ -1,14 +1,5 @@
-.details {
-    /* border: 2px solid black;
-    border-radius: 12px;
-    box-shadow: 4px 4px 1px 0px; */
-}
-
-.react-chart {
-    font-family: 'Power Grotesk', sans-serif;
-}
-.apexcharts-zoomin-icon, .apexcharts-zoomout-icon, .apexcharts-zoom-icon, .apexcharts-reset-icon, .apexcharts-zoomout-icon, .apexcharts-menu-icon, .apexcharts-pan-icon {
-    display: none;
+.chart-container {
+    width: 100%;
 }
 .details-header {
     display: block;
@@ -39,16 +30,4 @@
 }
 .container p {
     margin: 0;
-}
-.apexcharts-gridline {
-    stroke: transparent;
-}
-
-.apexcharts-text.apexcharts-xaxis-label {
-    font-size: 1.3vh;
-    font-weight: 500;
-}
-.apexcharts-text.apexcharts-yaxis-label {
-    font-size: 1.3vh;
-    font-weight: 500;
 }
