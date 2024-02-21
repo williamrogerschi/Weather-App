@@ -17,8 +17,8 @@ import heavyRainIcon from '/assets/weather/heavy-rain.png'
 import lightSnowIcon from '/assets/weather/lightsnow.png'
 import hailIcon from '/assets/weather/hail.png'
 import { useLocation } from 'react-router-dom';
-import './home.css'
 import Details from '../Details/Details'
+import './home.css'
 
 
 const renderIcon = (apiCode) => {
@@ -228,25 +228,26 @@ const Home = () => {
 
 	const searchWeather = async () => {
 		try {
-			const currentWeatherResponse = await fetch(`${api.base}current.json?key=${api.key}&q=${search}`);
-			if (!currentWeatherResponse.ok) {
-				throw new Error('City not found');
-			}
-			const currentWeatherResult = await currentWeatherResponse.json();
-			setSelectedCity(currentWeatherResult.location.name);
-			setWeatherData(currentWeatherResult);
-
-			const forecastResponse = await fetch(`${api.base}forecast.json?key=${api.key}&q=${search}&days=3`);
-			if (!forecastResponse.ok) {
-				throw new Error('City not found');
-			}
-			const forecastResult = await forecastResponse.json();
-			setFuture(forecastResult);
-
+		  const currentWeatherResponse = await fetch(`${api.base}current.json?key=${api.key}&q=${search}`);
+		  if (!currentWeatherResponse.ok) {
+			throw new Error('City not found');
+		  }
+		  const currentWeatherResult = await currentWeatherResponse.json();
+	  
+		  const forecastResponse = await fetch(`${api.base}forecast.json?key=${api.key}&q=${search}&days=3`);
+		  if (!forecastResponse.ok) {
+			throw new Error('City not found');
+		  }
+		  const forecastResult = await forecastResponse.json();
+	  
+		  setSelectedCity(currentWeatherResult.location.name);
+		  setWeatherData(currentWeatherResult);
+		  setFuture(forecastResult);
 		} catch (error) {
-			console.error("error fetching weather:", error.message)
+		  console.error("Error fetching weather:", error.message);
 		}
-	};
+	  };
+
 
 	const handleKeyPress = (event) => {
 		if (event.key === 'Enter') {
@@ -262,6 +263,7 @@ const Home = () => {
 			setWeatherData(weatherData);
 		}
 	}, [location.state])
+	console.log('Home useEffect weatherData:', weatherData)
 
 
 	return (
@@ -317,7 +319,7 @@ const Home = () => {
 			)}
 		  </div>
 		  <div className='details-container'>
-			<Details />
+		  <Details  future={future} city={selectedCity} weatherData={weatherData} />
 		  </div>
 		</div>
 	  );
