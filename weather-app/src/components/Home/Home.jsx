@@ -183,6 +183,7 @@ const Home = () => {
 				stroke="black"
 				tickLine={false}
 				interval="preserveStartEnd"
+				tickFormatter={(value) => value.split(':')[0]}
 				/>
                 <YAxis
                   hide={true}
@@ -193,12 +194,12 @@ const Home = () => {
                 <Line
                   type="monotone"
                   dataKey="temp_f"
-                  stroke="black"
+                  stroke="gray"
                   strokeWidth={3}
                   dot={{ fill: 'black', r: 0 }}
                   label={{
                     value: 'Temperature (ºF)',
-                    position: 'top',
+                    position: 'center',
                     fontWeight: '0',
 					fill: 'black',
                   }}
