@@ -17,8 +17,9 @@ import heavyRainIcon from '/assets/weather/heavy-rain.png'
 import lightSnowIcon from '/assets/weather/lightsnow.png'
 import hailIcon from '/assets/weather/hail.png'
 import { useLocation } from 'react-router-dom';
-import Details from '../Details/Details'
+import { LineChart, Line, ResponsiveContainer, XAxis } from 'recharts';
 import './home.css'
+import '../Details/details.css'
 
 
 const renderIcon = (apiCode) => {
@@ -202,12 +203,14 @@ const api = {
 
 const Home = () => {
 
-	const location = useLocation()
-
-	const [search, setSearch] = useState('')
-	const [weatherData, setWeatherData] = useState(null)
-	const [future, setFuture] = useState(null)
-	const [selectedCity, setSelectedCity] = useState('')
+	const [search, setSearch] = useState('');
+	const [weatherData, setWeatherData] = useState(null);
+	const [future, setFuture] = useState(null);
+	const [selectedCity, setSelectedCity] = useState('');
+	const [chartData, setChartData] = useState([]);
+	const [astroData, setAstroData] = useState(null);
+	const [chanceOfRain, setChanceOfRain] = useState(null);
+	const [pressureData, setPressureData] = useState(null); 
 
 
 	const formatDateString = (dateString) => {
@@ -226,44 +229,87 @@ const Home = () => {
 		return formattedDate
 	}
 
-	const searchWeather = async () => {
+	const fetchData = async () => {
 		try {
 		  const currentWeatherResponse = await fetch(`${api.base}current.json?key=${api.key}&q=${search}`);
 		  if (!currentWeatherResponse.ok) {
 			throw new Error('City not found');
 		  }
 		  const currentWeatherResult = await currentWeatherResponse.json();
-	  
+	
 		  const forecastResponse = await fetch(`${api.base}forecast.json?key=${api.key}&q=${search}&days=3`);
 		  if (!forecastResponse.ok) {
 			throw new Error('City not found');
 		  }
 		  const forecastResult = await forecastResponse.json();
-	  
+	
 		  setSelectedCity(currentWeatherResult.location.name);
 		  setWeatherData(currentWeatherResult);
 		  setFuture(forecastResult);
+
+		  console.log('future forecast', forecastResult)
+	
+		  if (forecastResult && forecastResult.forecast && forecastResult.forecast.forecastday) {
+			console.log('Updated weather data:', currentWeatherResult);
+			const astroData = forecastResult.forecast.forecastday[0]?.astro || null;
+			console.log('astroData:', astroData)
+			setAstroData(astroData);
+
+			const chanceOfRain = forecastResult.forecast.forecastday[0].day.daily_chance_of_rain || null;
+        	console.log('chanceOfRain:', chanceOfRain);
+			setChanceOfRain(chanceOfRain)
+
+        const pressureData = currentWeatherResult.current?.pressure_mb || null;
+        console.log('pressureData:', pressureData);
+		setPressureData(pressureData)
+	
+			const currentHour = new Date().getHours();
+			const next12HoursData = forecastResult.forecast.forecastday[0].hour.slice(
+			  currentHour,
+			  currentHour + 12
+			);
+			const remainingHours = 12 - next12HoursData.length;
+			const additionalHours = forecastResult.forecast.forecastday[0].hour.slice(0, remainingHours);
+	
+			const filteredData = [
+			  ...next12HoursData
+				.filter((_, index) => index % 2 === 0)
+				.map((hourData) => ({
+				  time: hourData.time.split(' ')[1],
+				  temp_f: Math.round(hourData.temp_f),
+				})),
+			  ...additionalHours
+				.filter((_, index) => index % 2 === 0)
+				.map((hourData) => ({
+				  time: hourData.time.split(' ')[1],
+				  temp_f: Math.round(hourData.temp_f),
+				})),
+			];
+	
+			setChartData(filteredData);
+			console.log('chartData:', chartData);
+		  } else {
+			setAstroData(null);
+		  }
 		} catch (error) {
-		  console.error("Error fetching weather:", error.message);
+		  console.error('Error fetching weather:', error.message);
 		}
 	  };
-
-
-	const handleKeyPress = (event) => {
+	
+	  const handleKeyPress = (event) => {
 		if (event.key === 'Enter') {
-			searchWeather()
+		  fetchData();
 		}
-	}
-
-	useEffect(() => {
-
+	  };
+	
+	  useEffect(() => {
 		const { city, weatherData } = location.state || {};
+		console.log('currentCity:', location.state)
 		if (city && weatherData) {
-			setSelectedCity(city);
-			setWeatherData(weatherData);
+		  setSelectedCity(city);
+		  setWeatherData(weatherData);
 		}
-	}, [location.state])
-
+	  }, [location.state]);
 
 	return (
 		<div className="main" style={weatherData ? changeBG(weatherData.current.condition.code) : {}}>
@@ -278,7 +324,7 @@ const Home = () => {
 					  onChange={(e) => setSearch(e.target.value)}
 					  onKeyDown={handleKeyPress}
 					/>
-					<button onClick={searchWeather}>
+					<button onClick={fetchData}>
 					  <img className="search-icon" src="/assets/searchicon.png" alt="" />
 					</button>
 				  </div>
@@ -318,7 +364,91 @@ const Home = () => {
 			)}
 		  </div>
 		  <div className='details-container'>
-		  <Details  future={future} city={selectedCity} weatherData={weatherData} />
+		  <div className='details'>
+      <div className='details-12'>
+        <ResponsiveContainer width="100%" height={300}>
+          <LineChart data={chartData}>
+            <XAxis dataKey='time' />
+            <Line
+              type="monotone"
+              dataKey="temp_f"
+              stroke="black"
+              strokeWidth={2}
+              dot={{ fill: 'black', r: 0 }}
+              label={{ value: 'Temperature (ºF)', position: 'top', fontWeight: '0' }}
+            />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
+      <div className='details-wrapper'>
+        <div className='details-content'>
+          {astroData && chanceOfRain && pressureData && (
+            <>
+              <div className='row-wrapper'>
+                <div className='container'>
+                  <p>Sunrise</p>
+                  <p>{astroData.sunrise}</p>
+                </div>
+                <div className='container'>
+                  <p>Sunset</p>
+                  <p>{astroData.sunset}</p>
+                </div>
+              </div>
+              <div className='row-wrapper'>
+                <div className='container'>
+                  <p>Moonrise</p>
+                  <p>{astroData.moonrise}</p>
+                </div>
+                <div className='container'>
+                  <p>Moonset</p>
+                  <p>{astroData.moonset}</p>
+                </div>
+              </div>
+              <div className='row-wrapper'>
+                <div className='container'>
+                  <p>Moon Phase</p>
+                  <p>{astroData.moon_phase}</p>
+                </div>
+                <div className='container'>
+                  <p>Moon Illumination</p>
+                  <p>{astroData.moon_illumination}</p>
+                </div>
+				</div>
+				<div className='row-wrapper'>
+				<div className='container'>
+                  <p>Chance of Rain</p>
+                  <p>{chanceOfRain}%</p>
+				  </div>
+				<div className='container'>
+                  <p>Pressure</p>
+                  <p>{pressureData} mb</p>
+                </div>
+              </div>
+            </>
+          )}
+			<div className='row-wrapper'>
+				<div className='container'>
+					<p>Wind</p>
+					<p>{weatherData.current.wind_dir} {weatherData.current.wind_mph}  mp/h</p>
+				</div>
+				<div className='container'>
+					<p>Feels Like</p>
+					<p>{weatherData.current.feelslike_f}ºF</p>
+				</div>
+			</div>
+			<div className='row-wrapper'>
+				<div className='container'>
+					<p>Humidity</p>
+					<p>{weatherData.current.humidity}%</p>
+				</div>
+				<div className='container'>
+					<p>UV</p>
+					<p>{weatherData.current.uv}</p>
+				</div>
+			</div>
+        </div>
+      </div>
+    </div>
 		  </div>
 		</div>
 	  );

@@ -8,8 +8,15 @@ const Details = ({ city, weatherData, future }) => {
   const [astroData, setAstroData] = useState(null);
 
   useEffect(() => {
+    
     const fetchData = async () => {
-      if (weatherData && weatherData.forecast && weatherData.forecast.forecastday) {
+
+        if (weatherData && weatherData.forecast && weatherData.forecast.forecastday) {
+            console.log('Updated weather data:', weatherData); // Log weatherData for debugging
+            const astroData = weatherData.forecast.forecastday[0]?.astro || null;
+            console.log('astroData:', astroData); // Log astroData for debugging
+            setAstroData(astroData);
+
         const currentHour = new Date().getHours();
         const next12HoursData = weatherData.forecast.forecastday[0].hour.slice(
           currentHour,
@@ -34,21 +41,17 @@ const Details = ({ city, weatherData, future }) => {
         ];
 
         setChartData(filteredData);
-      }
-
-      if (future && future.forecastday) {
-        const astroDataFromFuture = future.forecastday[0].astro;
-
-        if (astroDataFromFuture) {
-          setAstroData(astroDataFromFuture);
-        } else {
-          setAstroData(null);
-        }
+        console.log('chartData:', chartData);
+      } else {
+        setAstroData(null);
       }
     };
 
     fetchData();
   }, [weatherData, city, future]);
+  console.log('weather data after useEffect:', weatherData)
+  console.log('future data after useEffect:', future)
+
 
   useEffect(() => {
     setCurrentCity(city || 'defaultCity');
@@ -85,31 +88,31 @@ const Details = ({ city, weatherData, future }) => {
               <div className='row-wrapper'>
                 <div className='container'>
                   <p>Sunrise</p>
-                  <p>{future.forecastday[0].astro.sunrise}</p>
+                  <p>{astroData.sunrise}</p>
                 </div>
                 <div className='container'>
                   <p>Sunset</p>
-                  <p>{future.forecastday[0].astro.sunset}</p>
+                  <p>{astroData.sunset}</p>
                 </div>
               </div>
               <div className='row-wrapper'>
                 <div className='container'>
                   <p>Moonrise</p>
-                  <p>{future.forecastday[0].astro.moonrise}</p>
+                  <p>{astroData.moonrise}</p>
                 </div>
                 <div className='container'>
                   <p>Moonset</p>
-                  <p>{future.forecastday[0].astro.moonset}</p>
+                  <p>{astroData.moonset}</p>
                 </div>
               </div>
               <div className='row-wrapper'>
                 <div className='container'>
                   <p>Moon Phase</p>
-                  <p>{future.forecastday[0].astro.moon_phase}</p>
+                  <p>{astroData.moon_phase}</p>
                 </div>
                 <div className='container'>
                   <p>Moon Illumination</p>
-                  <p>{future.forecastday[0].astro.moon_illumination}</p>
+                  <p>{astroData.moon_illumination}</p>
                 </div>
               </div>
             </>
