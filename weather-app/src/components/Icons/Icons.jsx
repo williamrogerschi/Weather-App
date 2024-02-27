@@ -372,5 +372,4 @@ const changeBG = (apiCode) => {
 	}
 }
 
-
-export { renderIcon, changeBG}
+export { renderIcon, changeBG }
