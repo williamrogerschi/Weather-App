@@ -1,25 +1,17 @@
 :root {
   /* sunny */
-  --backgroundSunny: -webkit-linear-gradient(180deg, #ff91008f,#b3b96e3f);
-  --backgroundSunny: linear-gradient(180deg, #ff91008f,#b3b96e3f);
+  --backgroundSunny: url('/assets/weather/bgsunny.jpg');
   /* cloudy */
-  --backgroundCloudy: -webkit-linear-gradient(180deg, #6b7080b5,#8398bc4b);
-  --backgroundCloudy: linear-gradient(180deg, #6b7080b5,#8398bc4b);
+  --backgroundCloudy: url('/assets/weather/bgcloudy.jpg');
   /* rainy */
-  --backgroundRainy: -webkit-linear-gradient(180deg, #5f747bb4,#96b4a84b);
-  --backgroundRainy: linear-gradient(180deg, #5f747bb4,#96b4a84b);
+  --backgroundRainy: url('/assets/weather/bgrain.jpg');
   /* thunder */
-  --backgroundThunder: -webkit-linear-gradient(180deg, #d1ed196d,#793eb74b);
-  --backgroundThunder: linear-gradient(180deg, #d1ed196d,#793eb74b);
+  --backgroundThunder: url('/assets/weather/bgthunder.jpg');
   /* snowy */
-  --backgroundSnowy: -webkit-linear-gradient(180deg, #57b9c86d,#f5f8f74b);
-  --backgroundSnowy: linear-gradient(180deg, #57b9c86d,#f5f8f74b);
+  --backgroundSnowy: url('/assets/weather/bgsnowy.jpg');
   /* default */
-  --background: -webkit-linear-gradient(180deg, #b19393a5,#febcbc40);
-  --background: linear-gradient(180deg, #b19393a5,#febcbc40);
+  --background: url('/assets/weather/bgdefault.jpg');
   /* night */
-  --backgroundNight: -webkit-linear-gradient(180deg, #14184089,#2e20394b);
-  --backgroundNight: linear-gradient(180deg, #14184089,#2e20394b);
-  --background-image: url('/assets/wb.png');
-  --primary-text-color: #252422;
+  --backgroundNight: url('/assets/weather/bgnight.jpg');
+  --primary-text-color: #0a0a09;
 }

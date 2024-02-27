@@ -67,34 +67,12 @@
   /* this includes padding and margin in the vh */
 }
 
-html, body::before {
-  background: rgba(0, 0, 0, 0);
-}
-
-html,
-body {
-  background-image: var(--background-image);
+html, body, .App {
+  height: 100%;
+  background-image: var(--background);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   color: var(--primary-text-color);
   font-family: 'Power Grotesk', sans-serif;
 }
-
-
-.App {
-
-  @media screen and (max-width:1200px) {
-    min-height: 100vh;
-  }
-  @media screen and (max-width:1000px) {
-    min-height: 100vh;
-
-  }
-  @media screen and (max-width:800px) {
-    min-height: 100vh;
-
-  }
-  @media screen and (max-width:600px) {
-    min-height: 100vh;
-
-  }
-}
-

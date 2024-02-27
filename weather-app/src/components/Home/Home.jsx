@@ -9,6 +9,7 @@ const api = {
   base: 'http://api.weatherapi.com/v1/',
 };
 
+
 const Home = () => {
   const [search, setSearch] = useState('');
   const [weatherData, setWeatherData] = useState(null);
@@ -51,6 +52,7 @@ const Home = () => {
       const forecastResult = await forecastResponse.json();
 
       setSelectedCity(currentWeatherResult.location.name);
+      console.log(currentWeatherResult)
       setWeatherData(currentWeatherResult);
       setFuture(forecastResult);
 
@@ -91,25 +93,21 @@ const Home = () => {
             })),
         ];
 
-        // Calculate the minimum and maximum temperature values from your data
-        const minTemp = filteredData.reduce((min, data) => Math.min(min, data.temp_f), Infinity);
-        const maxTemp = filteredData.reduce((max, data) => Math.max(max, data.temp_f), -Infinity);
-
-        // Add some padding to the domain for better visualization
+        const minTemp = filteredData.reduce((min, data) => Math.min(min, data.temp_f), Infinity)
+        const maxTemp = filteredData.reduce((max, data) => Math.max(max, data.temp_f), -Infinity)
         const yDomainPadding = 5;
-        const newYDomain = [minTemp - yDomainPadding, maxTemp + yDomainPadding];
+        const newYDomain = [minTemp - yDomainPadding, maxTemp + yDomainPadding]
 
-        // Set the Y-axis domain in your state
-        setYDomain(newYDomain);
 
-        setChartData(filteredData);
+        setYDomain(newYDomain)
+        setChartData(filteredData)
       } else {
         setAstroData(null);
       }
     } catch (error) {
-      console.error('Error fetching weather:', error.message);
+      console.error('Error fetching weather:', error.message)
     }
-  };
+  }
 
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
@@ -118,13 +116,15 @@ const Home = () => {
   };
 
   useEffect(() => {
-    const { city, weatherData } = location.state || {};
+    const { city, weatherData } = location.state || {}
     if (city && weatherData) {
-      setSelectedCity(city);
-      setWeatherData(weatherData);
+      setSelectedCity(city)
+      setWeatherData(weatherData)
     }
-  }, [location.state]);
+  }, [location.state])
 
+
+  
   return (
     <div className="main" style={weatherData ? changeBG(weatherData.current.condition.code) : {}}>
       <div className="top-container">
