@@ -10,7 +10,8 @@
   /* snowy */
   --backgroundSnowy: url('/assets/weather/bgsnowy.jpg');
   /* default */
-  --background: url('/assets/weather/bgdefault.jpg');
+  /* --background: url('/assets/weather/bgdefault.jpg'); */
+  --background: black;
   /* night */
   --backgroundNight: url('/assets/weather/bgnight.jpg');
   --primary-text-color: #0a0a09;
