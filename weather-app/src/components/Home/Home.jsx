@@ -298,7 +298,7 @@ const api = {
 
 const LoadingScreen = ()  => (
 	<div className='loading-screen'>
-		<img className='loading' src='/assets/aq.gif' />
+		<img className='loading' src='/assets/3cc.gif' />
 		{/* <p className='loading-p'>Loading...</p> */}
 	</div>
 )
