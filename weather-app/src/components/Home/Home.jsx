@@ -298,7 +298,8 @@ const api = {
 
 const LoadingScreen = ()  => (
 	<div className='loading-screen'>
-		<img className='loading' src='/assets/yy3.gif' />
+		<img className='loading' src='/assets/aq.gif' />
+		{/* <p className='loading-p'>Loading...</p> */}
 	</div>
 )
 
@@ -530,7 +531,7 @@ const Home = () => {
 	const stopLoading = () => {
 		setTimeout(() => {
 			setLoading(false)
-		}, 2000)
+		}, 3000)
 	}
 
 	useEffect(() => {
