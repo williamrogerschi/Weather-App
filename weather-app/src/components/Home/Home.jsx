@@ -296,6 +296,12 @@ const api = {
 	base: 'http://api.weatherapi.com/v1/',
 }
 
+const LoadingScreen = ()  => (
+	<div className='loading-screen'>
+		<img className='loading' src='/assets/yy3.gif' />
+	</div>
+)
+
 const Home = () => {
 	const [search, setSearch] = useState('')
 	const [weatherData, setWeatherData] = useState(null)
@@ -305,7 +311,8 @@ const Home = () => {
 	const [astroData, setAstroData] = useState(null)
 	const [chanceOfRain, setChanceOfRain] = useState(null)
 	const [pressureData, setPressureData] = useState(null)
-	const [yDomain, setYDomain] = useState([0, 100]) // Set initial values, adjust accordingly
+	const [yDomain, setYDomain] = useState([0, 100])
+	const [loading, setLoading] = useState(true)
 
 	const formatDateString = (dateString) => {
 		const options = { weekday: 'long', month: 'long', day: 'numeric' }
@@ -332,14 +339,14 @@ const Home = () => {
 				},
 				(error) => {
 					console.error('Error getting current location:', error.message)
-					// If there's an error, you can set a default city (e.g., New York, NY)
-					fetchWeatherData('40.7128', '-74.0060') // Default to New York, NY
+					stopLoading()
+					fetchWeatherData('40.7128', '-74.0060')
 				}
 			)
 		} else {
 			console.error('Geolocation is not supported by your browser')
-			// If geolocation is not supported, you can set a default city as well
-			fetchWeatherData('40.7128', '-74.0060') // Default to New York, NY
+			stopLoading()
+			fetchWeatherData('40.7128', '-74.0060')
 		}
 	}
 
@@ -366,6 +373,7 @@ const Home = () => {
 			setSelectedCity(currentWeatherResult.location.name)
 			setWeatherData(currentWeatherResult)
 			setFuture(forecastResult)
+			stopLoading()
 
 			if (
 				forecastResult &&
@@ -422,9 +430,11 @@ const Home = () => {
 				setChartData(filteredData)
 			} else {
 				setAstroData(null)
+				stopLoading()
 			}
 		} catch (error) {
 			console.error('Error fetching weather:', error.message)
+			stopLoading()
 		}
 	}
 
@@ -517,9 +527,19 @@ const Home = () => {
 		}
 	}
 
+	const startLoading = () => {
+		setLoading(true)
+	}
+
+	const stopLoading = () => {
+		setTimeout(() => {
+			setLoading(false)
+		}, 3000)
+	}
+
 	useEffect(() => {
 		getCurrentLocation()
-	}, []) // Fetch weather data for current location on component mount
+	}, [])
 
 	useEffect(() => {
 		const { city, weatherData } = location.state || {}
@@ -528,6 +548,10 @@ const Home = () => {
 			setWeatherData(weatherData)
 		}
 	}, [location.state])
+
+	if (loading) {
+		return <LoadingScreen />
+	}
 
 	return (
 		<div

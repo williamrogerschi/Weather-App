@@ -109,3 +109,13 @@ button {
 .forecast-condition {
     font-size: 1.8vh;
 }
+.loading-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.loading {
+    height: 50vh;
+}
