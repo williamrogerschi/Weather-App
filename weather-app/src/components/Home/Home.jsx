@@ -527,14 +527,10 @@ const Home = () => {
 		}
 	}
 
-	const startLoading = () => {
-		setLoading(true)
-	}
-
 	const stopLoading = () => {
 		setTimeout(() => {
 			setLoading(false)
-		}, 3000)
+		}, 2000)
 	}
 
 	useEffect(() => {
