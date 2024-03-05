@@ -121,6 +121,10 @@ button {
 .loading {
     height: 50vh;
     width: 100%;
+
+    @media screen and (max-width: 1200px) {
+        width: 100%;
+    }
 }
 .loading-p {
     font-size: 3vh;
