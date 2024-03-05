@@ -76,3 +76,8 @@ html, body, .App {
   color: var(--primary-text-color);
   font-family: 'Power Grotesk', sans-serif;
 }
+
+.top-container {
+  display: flex;
+  justify-content: center;
+}

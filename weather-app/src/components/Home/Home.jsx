@@ -6,7 +6,7 @@ import '../Details/details.css'
 
 const api = {
 	key: '891161eaa5ee484fb27145836232009',
-	base: 'http://api.weatherapi.com/v1/',
+	base: 'https://api.weatherapi.com/v1/',
 }
 
 const LoadingScreen = ()  => (
