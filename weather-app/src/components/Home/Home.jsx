@@ -324,11 +324,10 @@ const Home = () => {
 				)}
 			</div>
 			<div className="details-container">
-					<div className="details-12">
+					<div className="details-12" style={{paddingTop: '10rem' }}>
 						<ResponsiveContainer width="100%" height={300}>
 							<LineChart
 								data={chartData}
-								padding={{ top: 0, right: 20, left: 20, bottom: 100 }}
 							>
 								<XAxis
 									dataKey="time"
