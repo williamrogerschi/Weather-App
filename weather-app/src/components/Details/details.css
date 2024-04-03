@@ -11,6 +11,10 @@
     display: flex;
     justify-content: center;
 }
+.details-12 {
+    display: flex;
+    justify-content: center;
+}
 .details-content {
     font-size: 1.9vh;
     display: grid;
