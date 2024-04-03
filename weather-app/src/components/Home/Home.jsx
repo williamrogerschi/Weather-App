@@ -235,7 +235,7 @@ const Home = () => {
 	}
 
 	const handleKeyPress = (event) => {
-		if (event.key === 'Enter' || 'Return') {
+		if (event.key === 'Enter') {
 			fetchData()
 		}
 	}
