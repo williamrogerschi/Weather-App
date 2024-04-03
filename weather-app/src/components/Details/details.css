@@ -14,7 +14,7 @@
 .details-12 {
     display: flex;
     justify-content: center;
-    /* padding-top: 10rem; */
+    padding-top: 8rem;
 }
 .details-content {
     font-size: 1.9vh;
