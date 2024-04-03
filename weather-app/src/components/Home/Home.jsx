@@ -308,7 +308,9 @@ const Home = () => {
 							</p>
 						</div>
 					)}
-									{future && future.forecast && future.forecast.forecastday && (
+				</div>
+				<div className='two-day-container'>
+				{future && future.forecast && future.forecast.forecastday && (
 					<div className="two-day">
 						{future.forecast.forecastday.slice(1, 3).map((day) => (
 							<div key={day.date_epoch} className="forecast-day">
@@ -322,7 +324,6 @@ const Home = () => {
 					</div>
 				)}
 				</div>
-
 			</div>
 			<div className="details-container">
 					<div className="details-12">
