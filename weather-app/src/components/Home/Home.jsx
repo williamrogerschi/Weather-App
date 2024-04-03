@@ -328,7 +328,7 @@ const Home = () => {
 						<ResponsiveContainer width="100%" height={300}>
 							<LineChart
 								data={chartData}
-								margin={{ top: 0, right: 20, left: 20, bottom: 100 }}
+								padding={{ top: 0, right: 20, left: 20, bottom: 100 }}
 							>
 								<XAxis
 									dataKey="time"
