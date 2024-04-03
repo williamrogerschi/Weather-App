@@ -308,8 +308,7 @@ const Home = () => {
 							</p>
 						</div>
 					)}
-				</div>
-				{future && future.forecast && future.forecast.forecastday && (
+									{future && future.forecast && future.forecast.forecastday && (
 					<div className="two-day">
 						{future.forecast.forecastday.slice(1, 3).map((day) => (
 							<div key={day.date_epoch} className="forecast-day">
@@ -322,9 +321,11 @@ const Home = () => {
 						))}
 					</div>
 				)}
+				</div>
+
 			</div>
 			<div className="details-container">
-					<div className="details-12" style={{paddingTop: '10rem' }}>
+					<div className="details-12">
 						<ResponsiveContainer width="100%" height={300}>
 							<LineChart
 								data={chartData}
