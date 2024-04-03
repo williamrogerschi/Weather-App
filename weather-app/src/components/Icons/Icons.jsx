@@ -16,6 +16,8 @@ import heavyRainIcon from '/assets/weather/heavy-rain.png'
 import lightSnowIcon from '/assets/weather/lightsnow.png'
 import hailIcon from '/assets/weather/hail.png'
 
+
+
 const renderIcon = (apiCode) => {
 	switch (apiCode) {
 		case 1000:
@@ -224,14 +226,6 @@ const renderIcon = (apiCode) => {
 					className="forecast-img"
 					src={patchySleetIcon}
 					alt="Moderate or Heavy Sleet Showers"
-				/>
-			)
-		case 1243:
-			return (
-				<img
-					className="forecast-img"
-					src={heavyRainIcon}
-					alt="Moderate or Heavy Rain Showers"
 				/>
 			)
 		case 1255:

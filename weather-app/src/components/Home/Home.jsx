@@ -324,7 +324,6 @@ const Home = () => {
 				)}
 			</div>
 			<div className="details-container">
-				<div className="details">
 					<div className="details-12">
 						<ResponsiveContainer width="100%" height={300}>
 							<LineChart
@@ -443,7 +442,6 @@ const Home = () => {
 							)}
 						</div>
 					</div>
-				</div>
 			</div>
 		</div>
 	)
