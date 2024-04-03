@@ -90,7 +90,7 @@ button {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 3rem 1rem 4rem 1rem;
+    padding: 3rem 1rem 0rem 1rem;
 }
 .forecast-day {
     display: flex;
@@ -131,5 +131,5 @@ button {
     color: white;
 }
 .temp-two-wrapper {
-    padding-bottom: 8rem;
+    padding-bottom: 6rem;
 }
